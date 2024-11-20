@@ -1,0 +1,234 @@
+/* Style général */
+body {
+  font-family: 'Segoe UI Rounded', 'Arial Rounded', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #1F2937; /* Fond sombre */
+    color: #F3F4F6; /* Texte clair */
+  }
+  
+  /* Header */
+  header {
+    background-color: #4B5563; /* Gris foncé */
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #374151;
+    position: relative; /* Nécessaire pour positionner les chiffres binaires */
+  }
+  
+  #binary-wrapper {
+    position: absolute; /* Positionné par rapport au parent contenant */
+    top: 0; /* En haut du parent */
+    left: 0;
+    width: 100%;
+    height: 110px; /* Hauteur fixe du bandeau */
+    pointer-events: none; /* Les clics passent à travers */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1; /* Suffisant pour rester visible dans la hiérarchie */
+  }
+  
+  /* Les chiffres binaires */
+  .binary {
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace; /* Police monospaced pour un effet Matrix */
+    font-size: 20px;
+    color: #00ff00; /* Couleur verte typique de Matrix */
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 80px #00ff00;
+    animation: fall 1s linear infinite;
+  }
+  
+  /* Animation pour simuler le mouvement des chiffres binaires */
+  @keyframes floatBinary {
+    0% {
+      transform: translateX(0) translateY(0);
+      opacity: 1;
+    }
+  
+    100% {
+      transform: translateX(var(--move-x)) translateY(var(--move-y));
+      opacity: 1;
+    }
+  }
+
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  #scroll-text {
+    position: absolute;
+    bottom: 275px; /* Décalage au-dessus de la flèche */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem; /* Taille du texte "Scroll down" */
+    color: #008FF0; /* Couleur du texte */
+    z-index: 1000;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  #scroll-arrow {
+    position: absolute;
+    bottom: 175px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5rem;
+    color: #008FF0; /* Bleu clair */
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+  
+  #scroll-arrow.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    pointer-events: none;
+  }
+  
+  /* Carrousel Wrapper */
+  #carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Limite la largeur à 700px */
+    margin: 32px auto;
+    overflow: hidden; /* Cache les images hors de vue */
+    border-radius: 8px;
+    background-color: #374151; /* Fond du carrousel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Hauteur fixe du carrousel, ajuste à tes besoins */
+  }
+  
+  /* Carrousel */
+  #carousel {
+    display: flex; /* Les images sont côte à côte */
+    transition: transform 0.5s ease-in-out; /* Animation de défilement */
+    width: 100%;
+  }
+  
+  #carousel img {
+    max-width: 100%; /* L'image occupe au maximum toute la largeur du carrousel */
+    max-height: 100%; /* L'image ne dépasse pas la hauteur du carrousel */
+    object-fit: contain; /* Maintient les proportions de l'image */
+  }
+  
+  /* Boutons du carrousel */
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    color: #F3F4F6;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .carousel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Plus clair au survol */
+  }
+  
+  #prev {
+    left: 16px;
+  }
+  
+  #next {
+    right: 16px;
+  }
+  
+  /* Section Projets */
+  section h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    margin-top: 100px;
+    text-align: center;
+  }
+  
+  section a {
+    display: block;
+    background-color: #374151; /* Fond gris foncé */
+    color: #F3F4F6;
+    padding: 16px;
+    margin: 8px auto;
+    max-width: 400px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  section a:hover {
+    background-color: #4B5563; /* Plus clair au survol */
+    transform: scale(1.05); /* Mise en avant */
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #4B5563;
+    padding: 16px;
+    text-align: center;
+    font-size: 0.875rem;
+    margin-top: 150px;
+    border-top: 2px solid #374151;
+  }
+  
+  footer a {
+    color: #60A5FA; /* Lien bleu clair */
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  .btn-contact {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #008FF0; /* Couleur de fond */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-contact:hover {
+    background-color: #005f88; /* Couleur de fond au survol */
+  }
+  
+  /* Effet de défilement parallaxe */
+  #carousel-section,
+  #projects-section {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  #carousel-section.visible,
+  #projects-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
